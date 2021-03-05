@@ -1,0 +1,6 @@
+framework module Pods_ZQApp {
+  umbrella header "Pods-ZQApp-umbrella.h"
+
+  export *
+  module * { export * }
+}

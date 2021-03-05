@@ -1,0 +1,26 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+platform :ios, '10.0'
+
+target 'ZQApp' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for ZQApp
+
+  # 网络请求
+  pod 'Moya', '~> 14.0'
+  
+  # 提示
+  pod 'MBProgressHUD'
+
+  # 数据解析
+  pod 'Result', '~> 5.0'
+  pod 'HandyJSON', '~> 5.0.2'
+
+  # 界面
+  pod 'SnapKit', '~> 5.0.1'
+
+
+end
