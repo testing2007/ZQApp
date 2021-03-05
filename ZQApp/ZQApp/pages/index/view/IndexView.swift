@@ -8,32 +8,45 @@
 import SwiftUI
 import Moya
 
-struct IndexView: BaseView {
-    @State private var indexVM:IndexViewModel = IndexViewModel()
+struct IndexView: View {
+//    @State private var indexVM:IndexViewModel = IndexViewModel()
     
-    func contentLoaded() -> Bool {
-        //Ask viewModel if content is loaded
-        indexVM.request{ (_ bSuccess:Bool, _ data: [IndexModel]?) in
-            if(bSuccess) {
-                //成功
-            } else {
-                //失败
-            }
+//    @State private var res : Bool = false
+//
+//    func contentLoaded() -> Bool {
+//        //Ask viewModel if content is loaded
+//        indexVM.request{ (_ bSuccess:Bool, _ data: [IndexModel]?) in
+//            res = bSuccess
+//            if(bSuccess) {
+//                //成功
+////                loadedBody
+//            } else {
+//                //失败
+////                unloadedBody
+//            }
+//        }
+//        return res
+//    }
+//
+//    var loadedBody : some View {
+//        Text("content is loaded")
+//    }
+//
+//    var unloadedBody: some View {
+//        Text("Fetching content...")
+//    }
+    
+    @ObservedObject var indexVM : IndexViewModel = IndexViewModel()
+    var body: some View {
+        AsyncContentView(source: indexVM) { data in
+            Text(data?[0].tagName ?? "sss")
+//            self.indexVM.
         }
-        return false
-    }
-    
-    var loadedBody : some View {
-        Text("content is loaded")
-    }
-    
-    var unloadedBody: some View {
-        Text("Fetching content...")
     }
 }
 
 struct IndexView_Previews: PreviewProvider {
-    static var previews: some BaseView {
+    static var previews: some View {
         IndexView()
     }
 }

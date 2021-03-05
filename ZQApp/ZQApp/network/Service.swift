@@ -18,7 +18,7 @@ enum Service {
 }
 
 extension Service : TargetType {
-    var baseURL: URL { return URL(string: "https://app.boxuegu.com")! }
+    var baseURL: URL { return URL(string: "https://app.boxuegu.com/11")! }
     var path: String {
         switch self {
         case .index:
@@ -101,26 +101,31 @@ extension MoyaProvider {
     @discardableResult
     open func request<T: HandyJSON>(_ target: Target,
                                     model: T.Type,
-                                    completion: ((_ bSuccess:Bool, _ returnData: T?) -> Void)?) -> Cancellable? {
+                                    completion: ((_ bSuccess:Bool, _ returnData: T?, _ error:MoyaError?) -> Void)?) -> Cancellable? {
         
         return request(target, completion: { (result) in
             guard let completion = completion else { return }
             guard let returnData = try? result.value?.mapModel(ServiceModel<T>.self) else {
-                //TODO: 打印错误日志
-                completion(false, nil)
+                //TODO: 打印错误日志， 404 也返回 result.success
+//                let response = result.value
+//                do {
+//                    let filterResponse = try response?.filterSuccessfulStatusCodes()
+//                    completion(false, nil, filterResponse?.error)
+//                } catch {
+//                }
+                completion(false, nil, result.error)
                 return
             }
             if(returnData.status == 200) {
                 //TODO: 打印网络日志(URL / 请求方式 / 请求参数 / 数据响应)
                 //成功
-                completion(true, returnData.result)
+                completion(true, returnData.result, nil)
             
             } else {
                 //TODO: 打印网络日志
                 //失败
                 //可以设置自定义错误
-            
-                completion(false, returnData.result)
+                completion(false, nil, result.error)
             }
 
         })
