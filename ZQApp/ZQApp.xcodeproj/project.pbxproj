@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9436EEB925F5BF440022A79B /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9436EEB825F5BF440022A79B /* ErrorView.swift */; };
 		944ED18E25F08566006FBA22 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED18D25F08566006FBA22 /* Service.swift */; };
 		944ED19925F08BA5006FBA22 /* IndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED19825F08BA5006FBA22 /* IndexView.swift */; };
 		944ED1AF25F0AC96006FBA22 /* IndexViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED1AE25F0AC96006FBA22 /* IndexViewModel.swift */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		12DF7EC7477EE9B56FDE5821 /* Pods_ZQApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZQApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9436EEB825F5BF440022A79B /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		944ED18D25F08566006FBA22 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		944ED19825F08BA5006FBA22 /* IndexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexView.swift; sourceTree = "<group>"; };
 		944ED1AE25F0AC96006FBA22 /* IndexViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexViewModel.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				944ED20A25F21292006FBA22 /* LoadingState.swift */,
 				944ED20E25F21379006FBA22 /* LoadableObject.swift */,
 				944ED21125F214B3006FBA22 /* AsyncContentView.swift */,
+				9436EEB825F5BF440022A79B /* ErrorView.swift */,
 			);
 			path = base;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				944ED18E25F08566006FBA22 /* Service.swift in Sources */,
 				944ED1AF25F0AC96006FBA22 /* IndexViewModel.swift in Sources */,
 				949A01D525ECE3780083063E /* CircleImage.swift in Sources */,
+				9436EEB925F5BF440022A79B /* ErrorView.swift in Sources */,
 				949A01D825ECE53C0083063E /* MapView.swift in Sources */,
 				94AE2F9E25EC9B4E0020EF31 /* SceneDelegate.swift in Sources */,
 				94AE2FA025EC9B4E0020EF31 /* ContentView.swift in Sources */,

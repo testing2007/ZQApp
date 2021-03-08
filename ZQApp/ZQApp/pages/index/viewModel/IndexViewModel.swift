@@ -26,6 +26,7 @@ class IndexViewModel : LoadableObject {
             } else {
                 //失败
                 self?.indexData = nil
+//                self?.state = .failed(error)
                 //self?.state = .failed(Error(""))
             }
         }

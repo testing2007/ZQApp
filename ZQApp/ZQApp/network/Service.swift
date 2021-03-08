@@ -13,12 +13,12 @@ import MBProgressHUD
 
 enum Service {
     case index
-//    case createUser(firstName: String, lastName: String)
-//    case updateUser(id: Int, firstName: String, lastName: String)
+    //    case createUser(firstName: String, lastName: String)
+    //    case updateUser(id: Int, firstName: String, lastName: String)
 }
 
 extension Service : TargetType {
-    var baseURL: URL { return URL(string: "https://app.boxuegu.com/11")! }
+    var baseURL: URL { return URL(string: "https://app.boxuegu.com")! }
     var path: String {
         switch self {
         case .index:
@@ -35,17 +35,17 @@ extension Service : TargetType {
         switch self {
         case .index: // Send no parameters
             return .requestPlain
-//        case let .updateUser(_, firstName, lastName):  // Always sends parameters in URL, regardless of which HTTP method is used
-//            return .requestParameters(parameters: ["first_name": firstName, "last_name": lastName], encoding: URLEncoding.queryString)
-//        case let .createUser(firstName, lastName): // Always send parameters as JSON in request body
-//            return .requestParameters(parameters: ["first_name": firstName, "last_name": lastName], encoding: JSONEncoding.default)
+        //        case let .updateUser(_, firstName, lastName):  // Always sends parameters in URL, regardless of which HTTP method is used
+        //            return .requestParameters(parameters: ["first_name": firstName, "last_name": lastName], encoding: URLEncoding.queryString)
+        //        case let .createUser(firstName, lastName): // Always send parameters as JSON in request body
+        //            return .requestParameters(parameters: ["first_name": firstName, "last_name": lastName], encoding: JSONEncoding.default)
         }
     }
     var sampleData: Data {
         switch self {
         case .index:
             return "".data(using: String.Encoding.utf8)!
-//            return "Half measures are as bad as nothing at all.".data(using: String.Encoding.utf8)!
+        //            return "Half measures are as bad as nothing at all.".data(using: String.Encoding.utf8)!
         }
     }
     var headers: [String: String]? {
@@ -101,33 +101,41 @@ extension MoyaProvider {
     @discardableResult
     open func request<T: HandyJSON>(_ target: Target,
                                     model: T.Type,
-                                    completion: ((_ bSuccess:Bool, _ returnData: T?, _ error:MoyaError?) -> Void)?) -> Cancellable? {
+                                    completion: ((_ bSuccess:Bool, _ returnData: T?, _ error:Error?) -> Void)?) -> Cancellable? {
         
-        return request(target, completion: { (result) in
+        return request(target, completion: {(result) in
+            
             guard let completion = completion else { return }
             guard let returnData = try? result.value?.mapModel(ServiceModel<T>.self) else {
                 //TODO: 打印错误日志， 404 也返回 result.success
-//                let response = result.value
-//                do {
-//                    let filterResponse = try response?.filterSuccessfulStatusCodes()
-//                    completion(false, nil, filterResponse?.error)
-//                } catch {
-//                }
-                completion(false, nil, result.error)
+                switch result {
+                    case let .success(moyaResponse):
+                        do {
+                            let filteredResponse = try moyaResponse.filterSuccessfulStatusCodes() // gives back a Response or throws an error. status code is 200-299
+                            //TODO:异常
+//                            completion(false, nil, Error(domain:"", code:0, userInfo:""))
+                        }
+                        catch let error {
+                            completion(false, nil, error)
+                        }
+                    case let .failure(error):
+                        completion(false, nil, error)
+                }
                 return
             }
+           
             if(returnData.status == 200) {
                 //TODO: 打印网络日志(URL / 请求方式 / 请求参数 / 数据响应)
                 //成功
                 completion(true, returnData.result, nil)
-            
+                
             } else {
                 //TODO: 打印网络日志
                 //失败
                 //可以设置自定义错误
                 completion(false, nil, result.error)
             }
-
+            
         })
     }
 }
