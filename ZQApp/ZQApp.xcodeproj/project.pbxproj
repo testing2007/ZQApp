@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		9436EEB925F5BF440022A79B /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9436EEB825F5BF440022A79B /* ErrorView.swift */; };
+		9437306C25F76259000A44EB /* ZQTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9437306B25F76259000A44EB /* ZQTextFieldStyle.swift */; };
+		9437309D25F78752000A44EB /* ZQFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9437309C25F78752000A44EB /* ZQFont.swift */; };
 		944ED18E25F08566006FBA22 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED18D25F08566006FBA22 /* Service.swift */; };
 		944ED19925F08BA5006FBA22 /* IndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED19825F08BA5006FBA22 /* IndexView.swift */; };
 		944ED1AF25F0AC96006FBA22 /* IndexViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED1AE25F0AC96006FBA22 /* IndexViewModel.swift */; };
 		944ED1BC25F0AFFA006FBA22 /* IndexModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED1BB25F0AFFA006FBA22 /* IndexModel.swift */; };
 		944ED1CC25F0DA28006FBA22 /* ServicceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED1CB25F0DA28006FBA22 /* ServicceModel.swift */; };
-		944ED20825F1D867006FBA22 /* common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED20725F1D867006FBA22 /* common.swift */; };
+		944ED20825F1D867006FBA22 /* TopVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED20725F1D867006FBA22 /* TopVC.swift */; };
 		944ED20B25F21292006FBA22 /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED20A25F21292006FBA22 /* LoadingState.swift */; };
 		944ED20F25F21379006FBA22 /* LoadableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED20E25F21379006FBA22 /* LoadableObject.swift */; };
 		944ED21225F214B3006FBA22 /* AsyncContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED21125F214B3006FBA22 /* AsyncContentView.swift */; };
@@ -32,12 +34,14 @@
 /* Begin PBXFileReference section */
 		12DF7EC7477EE9B56FDE5821 /* Pods_ZQApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZQApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9436EEB825F5BF440022A79B /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		9437306B25F76259000A44EB /* ZQTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZQTextFieldStyle.swift; sourceTree = "<group>"; };
+		9437309C25F78752000A44EB /* ZQFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZQFont.swift; sourceTree = "<group>"; };
 		944ED18D25F08566006FBA22 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		944ED19825F08BA5006FBA22 /* IndexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexView.swift; sourceTree = "<group>"; };
 		944ED1AE25F0AC96006FBA22 /* IndexViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexViewModel.swift; sourceTree = "<group>"; };
 		944ED1BB25F0AFFA006FBA22 /* IndexModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexModel.swift; sourceTree = "<group>"; };
 		944ED1CB25F0DA28006FBA22 /* ServicceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicceModel.swift; sourceTree = "<group>"; };
-		944ED20725F1D867006FBA22 /* common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = common.swift; sourceTree = "<group>"; };
+		944ED20725F1D867006FBA22 /* TopVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopVC.swift; sourceTree = "<group>"; };
 		944ED20A25F21292006FBA22 /* LoadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
 		944ED20E25F21379006FBA22 /* LoadableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableObject.swift; sourceTree = "<group>"; };
 		944ED21125F214B3006FBA22 /* AsyncContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncContentView.swift; sourceTree = "<group>"; };
@@ -135,6 +139,7 @@
 		944ED1B325F0AD79006FBA22 /* base */ = {
 			isa = PBXGroup;
 			children = (
+				9437309C25F78752000A44EB /* ZQFont.swift */,
 				944ED20A25F21292006FBA22 /* LoadingState.swift */,
 				944ED20E25F21379006FBA22 /* LoadableObject.swift */,
 				944ED21125F214B3006FBA22 /* AsyncContentView.swift */,
@@ -146,7 +151,8 @@
 		944ED20625F1D85A006FBA22 /* common */ = {
 			isa = PBXGroup;
 			children = (
-				944ED20725F1D867006FBA22 /* common.swift */,
+				944ED20725F1D867006FBA22 /* TopVC.swift */,
+				9437306B25F76259000A44EB /* ZQTextFieldStyle.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -350,7 +356,7 @@
 				944ED19925F08BA5006FBA22 /* IndexView.swift in Sources */,
 				944ED1CC25F0DA28006FBA22 /* ServicceModel.swift in Sources */,
 				944ED20B25F21292006FBA22 /* LoadingState.swift in Sources */,
-				944ED20825F1D867006FBA22 /* common.swift in Sources */,
+				944ED20825F1D867006FBA22 /* TopVC.swift in Sources */,
 				944ED1BC25F0AFFA006FBA22 /* IndexModel.swift in Sources */,
 				944ED21225F214B3006FBA22 /* AsyncContentView.swift in Sources */,
 				94AE2F9C25EC9B4E0020EF31 /* AppDelegate.swift in Sources */,
@@ -358,7 +364,9 @@
 				944ED1AF25F0AC96006FBA22 /* IndexViewModel.swift in Sources */,
 				949A01D525ECE3780083063E /* CircleImage.swift in Sources */,
 				9436EEB925F5BF440022A79B /* ErrorView.swift in Sources */,
+				9437309D25F78752000A44EB /* ZQFont.swift in Sources */,
 				949A01D825ECE53C0083063E /* MapView.swift in Sources */,
+				9437306C25F76259000A44EB /* ZQTextFieldStyle.swift in Sources */,
 				94AE2F9E25EC9B4E0020EF31 /* SceneDelegate.swift in Sources */,
 				94AE2FA025EC9B4E0020EF31 /* ContentView.swift in Sources */,
 				944ED20F25F21379006FBA22 /* LoadableObject.swift in Sources */,
@@ -515,6 +523,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${PROJECT_DIR}/${TARGET_NAME}/ZQApp.pch";
 				INFOPLIST_FILE = ZQApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -539,6 +548,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${PROJECT_DIR}/${TARGET_NAME}/ZQApp.pch";
 				INFOPLIST_FILE = ZQApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

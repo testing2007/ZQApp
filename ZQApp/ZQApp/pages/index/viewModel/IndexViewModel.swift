@@ -12,6 +12,7 @@ import HandyJSON
 class IndexViewModel : LoadableObject {
     var indexData : [IndexModel]? = nil
     let provider = MoyaProvider<Service>()
+    var recommends : [CourseItemModel]?
     
     @Published private(set) var state = LoadingState<[IndexModel]?>.idle
     
@@ -26,10 +27,27 @@ class IndexViewModel : LoadableObject {
             } else {
                 //失败
                 self?.indexData = nil
-//                self?.state = .failed(error)
-                //self?.state = .failed(Error(""))
+                self?.state = .failed(error!)
             }
         }
+    }
+    
+    func filter() -> [CourseItemModel]? {
+        self.recommends = nil
+        guard let _data = self.indexData else { return nil ;}
+        for category in _data {
+            if category.id == 2 {
+                let courses = category.courses
+                guard let _courses = courses else { continue; }
+                for item in _courses {
+                    if(recommends == nil) {
+                        recommends = []
+                    }
+                    recommends?.append(item)
+                }
+            }
+        }
+        return recommends
     }
     
 }

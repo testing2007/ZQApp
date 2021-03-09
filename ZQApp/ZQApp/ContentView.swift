@@ -12,7 +12,9 @@ var someCondition: Bool = false
 struct ContentView: View {
     
     var body: some View {
+//        Image("recommend")
         IndexView()
+//        RecommendContentView()
 //        Text("test")
 //        return VStack(){
 //            MapView()
