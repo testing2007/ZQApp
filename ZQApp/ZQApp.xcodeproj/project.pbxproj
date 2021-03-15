@@ -28,6 +28,11 @@
 		94AE2FA225EC9B4E0020EF31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94AE2FA125EC9B4E0020EF31 /* Assets.xcassets */; };
 		94AE2FA525EC9B4E0020EF31 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94AE2FA425EC9B4E0020EF31 /* Preview Assets.xcassets */; };
 		94AE2FA825EC9B4E0020EF31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94AE2FA625EC9B4E0020EF31 /* LaunchScreen.storyboard */; };
+		94D7F03125FF30BC00AF593E /* RecommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D7F03025FF30BC00AF593E /* RecommendView.swift */; };
+		94D7F03B25FF387700AF593E /* PrimaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D7F03A25FF387700AF593E /* PrimaryView.swift */; };
+		94D7F03E25FF388700AF593E /* FreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D7F03D25FF388700AF593E /* FreeView.swift */; };
+		94D7F04225FF38A600AF593E /* LiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D7F04125FF38A600AF593E /* LiveView.swift */; };
+		94D7F04525FF5D9500AF593E /* testAlignmentGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D7F04425FF5D9500AF593E /* testAlignmentGuide.swift */; };
 		A4213EA2DB242F5BF1E5D681 /* Pods_ZQApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12DF7EC7477EE9B56FDE5821 /* Pods_ZQApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +63,11 @@
 		94AE2FA425EC9B4E0020EF31 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		94AE2FA725EC9B4E0020EF31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		94AE2FA925EC9B4E0020EF31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		94D7F03025FF30BC00AF593E /* RecommendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendView.swift; sourceTree = "<group>"; };
+		94D7F03A25FF387700AF593E /* PrimaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryView.swift; sourceTree = "<group>"; };
+		94D7F03D25FF388700AF593E /* FreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeView.swift; sourceTree = "<group>"; };
+		94D7F04125FF38A600AF593E /* LiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveView.swift; sourceTree = "<group>"; };
+		94D7F04425FF5D9500AF593E /* testAlignmentGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testAlignmentGuide.swift; sourceTree = "<group>"; };
 		CEC3B3D406181E881E95EE4E /* Pods-ZQApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZQApp.release.xcconfig"; path = "Target Support Files/Pods-ZQApp/Pods-ZQApp.release.xcconfig"; sourceTree = "<group>"; };
 		E608FCC6182CAA0AFD545205 /* Pods-ZQApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZQApp.debug.xcconfig"; path = "Target Support Files/Pods-ZQApp/Pods-ZQApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,6 +116,11 @@
 			isa = PBXGroup;
 			children = (
 				944ED19825F08BA5006FBA22 /* IndexView.swift */,
+				94D7F03025FF30BC00AF593E /* RecommendView.swift */,
+				94D7F03A25FF387700AF593E /* PrimaryView.swift */,
+				94D7F03D25FF388700AF593E /* FreeView.swift */,
+				94D7F04125FF38A600AF593E /* LiveView.swift */,
+				94D7F04425FF5D9500AF593E /* testAlignmentGuide.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -354,8 +369,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				944ED19925F08BA5006FBA22 /* IndexView.swift in Sources */,
+				94D7F03125FF30BC00AF593E /* RecommendView.swift in Sources */,
 				944ED1CC25F0DA28006FBA22 /* ServicceModel.swift in Sources */,
 				944ED20B25F21292006FBA22 /* LoadingState.swift in Sources */,
+				94D7F04525FF5D9500AF593E /* testAlignmentGuide.swift in Sources */,
 				944ED20825F1D867006FBA22 /* TopVC.swift in Sources */,
 				944ED1BC25F0AFFA006FBA22 /* IndexModel.swift in Sources */,
 				944ED21225F214B3006FBA22 /* AsyncContentView.swift in Sources */,
@@ -365,11 +382,14 @@
 				949A01D525ECE3780083063E /* CircleImage.swift in Sources */,
 				9436EEB925F5BF440022A79B /* ErrorView.swift in Sources */,
 				9437309D25F78752000A44EB /* ZQFont.swift in Sources */,
+				94D7F03E25FF388700AF593E /* FreeView.swift in Sources */,
 				949A01D825ECE53C0083063E /* MapView.swift in Sources */,
 				9437306C25F76259000A44EB /* ZQTextFieldStyle.swift in Sources */,
 				94AE2F9E25EC9B4E0020EF31 /* SceneDelegate.swift in Sources */,
 				94AE2FA025EC9B4E0020EF31 /* ContentView.swift in Sources */,
+				94D7F04225FF38A600AF593E /* LiveView.swift in Sources */,
 				944ED20F25F21379006FBA22 /* LoadableObject.swift in Sources */,
+				94D7F03B25FF387700AF593E /* PrimaryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

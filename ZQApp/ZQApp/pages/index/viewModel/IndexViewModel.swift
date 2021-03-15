@@ -9,10 +9,19 @@ import Foundation
 import Moya
 import HandyJSON
 
+enum CourseType {
+    
+    case recommend
+}
+
 class IndexViewModel : LoadableObject {
     var indexData : [IndexModel]? = nil
     let provider = MoyaProvider<Service>()
-    var recommends : [CourseItemModel]?
+    var lives: [CourseItemModel]? //直播课
+    var recommends : [CourseItemModel]? //推荐课程
+    var primaries: [CourseItemModel]? //优质好课
+    var frees:[CourseItemModel]? //免费好客
+    
     
     @Published private(set) var state = LoadingState<[IndexModel]?>.idle
     
@@ -24,6 +33,7 @@ class IndexViewModel : LoadableObject {
                 //成功
                 self?.indexData = returnData
                 self?.state = .loaded(returnData)
+                self?._filter()
             } else {
                 //失败
                 self?.indexData = nil
@@ -32,22 +42,61 @@ class IndexViewModel : LoadableObject {
         }
     }
     
-    func filter() -> [CourseItemModel]? {
-        self.recommends = nil
-        guard let _data = self.indexData else { return nil ;}
+    func _filter() {
+        guard let _data = self.indexData else { return ;}
         for category in _data {
-            if category.id == 2 {
-                let courses = category.courses
-                guard let _courses = courses else { continue; }
-                for item in _courses {
-                    if(recommends == nil) {
-                        recommends = []
-                    }
-                    recommends?.append(item)
-                }
+            let courses = category.courses
+            guard let _courses = courses else { continue; }
+            if(category.sort == 0) {
+                _filterLiveCourse(courses: _courses)
+            } else if(category.sort == 1) {
+                _filterRecommendCourse(courses: _courses)
+            } else if(category.sort == 2) {
+            } else if(category.sort == 3) {
+                _filterPrimaryCourse(courses: _courses)
+            } else if(category.sort == 4) {
+                _filterFreeCourse(courses: _courses)
+            } else {
+                //do nothing
             }
+            
         }
-        return recommends
+    }
+    
+    func _filterLiveCourse(courses: [CourseItemModel]) {
+        for item in courses {
+            if(lives == nil) {
+                lives = []
+            }
+            lives?.append(item)
+        }
+    }
+    
+    func _filterRecommendCourse(courses: [CourseItemModel]) {
+        for item in courses {
+            if(recommends == nil) {
+                recommends = []
+            }
+            recommends?.append(item)
+        }
+    }
+    
+    func _filterPrimaryCourse(courses: [CourseItemModel]) {
+        for item in courses {
+            if(primaries == nil) {
+                primaries = []
+            }
+            primaries?.append(item)
+        }
+    }
+    
+    func _filterFreeCourse(courses: [CourseItemModel]) {
+        for item in courses {
+            if(frees == nil) {
+                frees = []
+            }
+            frees?.append(item)
+        }
     }
     
 }
