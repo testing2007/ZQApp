@@ -27,7 +27,7 @@ struct IndexContentView : View {
         List {
             LiveView(lives: self.vm.lives)
             RecommendView(recommends: self.vm.recommends)
-        }1
+        }
     }
 }
 
