@@ -154,7 +154,6 @@
 		944ED1B325F0AD79006FBA22 /* base */ = {
 			isa = PBXGroup;
 			children = (
-				9437309C25F78752000A44EB /* ZQFont.swift */,
 				944ED20A25F21292006FBA22 /* LoadingState.swift */,
 				944ED20E25F21379006FBA22 /* LoadableObject.swift */,
 				944ED21125F214B3006FBA22 /* AsyncContentView.swift */,
@@ -166,6 +165,7 @@
 		944ED20625F1D85A006FBA22 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				9437309C25F78752000A44EB /* ZQFont.swift */,
 				944ED20725F1D867006FBA22 /* TopVC.swift */,
 				9437306B25F76259000A44EB /* ZQTextFieldStyle.swift */,
 			);

@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Kingfisher
 
 struct RecommendContentView : View {
     var courseItem:CourseItemModel?
@@ -19,12 +20,10 @@ struct RecommendContentView : View {
         
         return AnyView(
             VStack(alignment:.leading, content: {
-                //                Image(_courseItem.bannerUrl ?? "")
-                Image("recommend")
+                KFImage(URL(string: _courseItem.bannerUrl ?? ""))
                     .renderingMode(.original)
                     .resizable()
-                    .frame(width: 155, height: 155, alignment: .leading)
-                    .cornerRadius(5)
+                    .frame(width: 150, height: 155, alignment: .leading)
                 
                 Text(_courseItem.gradeName ?? "")
                     .lineLimit(2)
@@ -33,20 +32,13 @@ struct RecommendContentView : View {
                 
                 Text(_courseItem.description ?? "")
                     .modifier(ZQRegularFont(fontSize: 11))
-                Text(self.priceDesc(_courseItem.currentPrice ?? 0))
-                    .modifier(ZQRegularFont(fontSize: 13)).offset(y:-0)
+                Text(_courseItem.currentPriceDesc)
+                    .modifier(ZQRegularFont(fontSize: 13))
             })
-            .border(Color.red, width: 0.2)
+            .cornerRadius(5)
+            .background(Color.white.cornerRadius(5).shadow(color: .black, radius: 2))
             .frame(width: 150, height:245, alignment: .topLeading)
         )
-    }
-    
-    func priceDesc(_ price:Int) -> String {
-        if(price == 0) {
-            return "免费"
-        } else {
-            return  String(price) + String(" 学币")
-        }
     }
     
 }
@@ -60,19 +52,20 @@ struct RecommendContentView_Previews: PreviewProvider {
             CourseItemModel(gradeName: "33333", currentPrice:0, description: "333"),
         ]
         if recommends != nil && recommends!.count > 0 {
-            VStack(alignment: .leading){
+            VStack(alignment: .leading, spacing:10){
                 Text("推荐课程")
-                ScrollView(.horizontal) {
-                    HStack(alignment: .top, spacing: 20, content: {
+                ScrollView(.horizontal, showsIndicators:false) {
+                    HStack(alignment: .top, spacing: 10, content: {
                         ForEach(recommends!, id:\.self) { item in
                             RecommendContentView(courseItem:item)
                         }
-                    })
-                }.frame(height: 245, alignment: .leading)
+                    }).frame(height: 245, alignment: .leading)
+                }
+                
             }.padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
-
+            
         } else {
-            Text("emptyView")
+            Color.clear //空view
         }
     }
 }
@@ -81,21 +74,19 @@ struct RecommendView : View {
     var recommends:[CourseItemModel]?
     var body: some View {
         if recommends != nil && recommends!.count > 0 {
-            VStack(alignment: .leading){
+            VStack(alignment: .leading, spacing:10){
                 Text("推荐课程")
-                ScrollView(.horizontal) {
+                ScrollView(.horizontal, showsIndicators:false) {
                     HStack(alignment: .top, spacing: 20, content: {
                         ForEach(recommends!, id:\.self) { item in
                             RecommendContentView(courseItem:item)
                         }
                     })
                 }.frame(height: 245, alignment: .leading)
-            }
-            .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
-
+            }.padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
+            
         } else {
-            Text("emptyView")
+            Color.clear //空view
         }
-        
     }
 }
