@@ -11,7 +11,7 @@
 		9437306C25F76259000A44EB /* ZQTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9437306B25F76259000A44EB /* ZQTextFieldStyle.swift */; };
 		9437309D25F78752000A44EB /* ZQFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9437309C25F78752000A44EB /* ZQFont.swift */; };
 		944ED18E25F08566006FBA22 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED18D25F08566006FBA22 /* Service.swift */; };
-		944ED19925F08BA5006FBA22 /* ¡ in Sources */ = {isa = PBXBuildFile; fileRef = 944ED19825F08BA5006FBA22 /* ¡ */; };
+		944ED19925F08BA5006FBA22 /* IndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED19825F08BA5006FBA22 /* IndexView.swift */; };
 		944ED1AF25F0AC96006FBA22 /* IndexViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED1AE25F0AC96006FBA22 /* IndexViewModel.swift */; };
 		944ED1BC25F0AFFA006FBA22 /* IndexModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED1BB25F0AFFA006FBA22 /* IndexModel.swift */; };
 		944ED1CC25F0DA28006FBA22 /* ServicceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED1CB25F0DA28006FBA22 /* ServicceModel.swift */; };
@@ -42,7 +42,7 @@
 		9437306B25F76259000A44EB /* ZQTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZQTextFieldStyle.swift; sourceTree = "<group>"; };
 		9437309C25F78752000A44EB /* ZQFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZQFont.swift; sourceTree = "<group>"; };
 		944ED18D25F08566006FBA22 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
-		944ED19825F08BA5006FBA22 /* ¡ */ = {isa = PBXFileReference; lastKnownFileType = text; path = "¡"; sourceTree = "<group>"; };
+		944ED19825F08BA5006FBA22 /* IndexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexView.swift; sourceTree = "<group>"; };
 		944ED1AE25F0AC96006FBA22 /* IndexViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexViewModel.swift; sourceTree = "<group>"; };
 		944ED1BB25F0AFFA006FBA22 /* IndexModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexModel.swift; sourceTree = "<group>"; };
 		944ED1CB25F0DA28006FBA22 /* ServicceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicceModel.swift; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 		944ED19225F08B46006FBA22 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				944ED19825F08BA5006FBA22 /* ¡ */,
+				944ED19825F08BA5006FBA22 /* IndexView.swift */,
 				94D7F03025FF30BC00AF593E /* RecommendView.swift */,
 				94D7F03A25FF387700AF593E /* PrimaryView.swift */,
 				94D7F03D25FF388700AF593E /* FreeView.swift */,
@@ -368,7 +368,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				944ED19925F08BA5006FBA22 /* ¡ in Sources */,
+				944ED19925F08BA5006FBA22 /* IndexView.swift in Sources */,
 				94D7F03125FF30BC00AF593E /* RecommendView.swift in Sources */,
 				944ED1CC25F0DA28006FBA22 /* ServicceModel.swift in Sources */,
 				944ED20B25F21292006FBA22 /* LoadingState.swift in Sources */,
