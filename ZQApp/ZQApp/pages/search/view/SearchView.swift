@@ -21,18 +21,19 @@ struct SearchContentView : View {
     }
     
     var body: some View {
-        guard let items = self.vm.searchData?.items else {
+        let items = self.vm.searchData
+        if items.count == 0 {
             return AnyView(EmptyView())
         }
 
         return AnyView(
-            VStack(alignment: .leading) {
-                Text("搜索结果为\(items.count)")
-                
-                ForEach(items, id:\.self) { item in
-//                    LiveContentView(courseItem:item)
+            List(items) {item in
+                VStack(alignment: .leading) {
+                    Text(item.description ?? "")
+                }.onAppear() {
+                    self.vm.isLastItem(item)
                 }
-            }.padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
+            }
         )
 
 

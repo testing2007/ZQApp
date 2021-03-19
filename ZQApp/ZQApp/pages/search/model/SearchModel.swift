@@ -8,7 +8,9 @@
 import Foundation
 import HandyJSON
 
-struct SearchItemModel: HandyJSON, Hashable {
+struct SearchItemModel: HandyJSON, Hashable, Identifiable {
+    var id:Int? //给每个元素设置生成的id
+    
     var courseId:Int?
     var courseName:String? //中间含有HTML格式
     var courseImg:String? //图标url地址
@@ -17,7 +19,6 @@ struct SearchItemModel: HandyJSON, Hashable {
 //    var isFree:Bool? //是否免费
 //    var learndCount:Int?
 }
-
 
 struct SearchModel : HandyJSON, Hashable {
     var items:[SearchItemModel]?
