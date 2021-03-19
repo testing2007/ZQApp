@@ -9,14 +9,16 @@ import Foundation
 import Moya
 import HandyJSON
 
-enum CourseType {
-    
+enum CourseType:Int {
+    case live = 0
     case recommend
+    case career
+    case primary
+    case free
 }
 
 class IndexViewModel : LoadableObject {
     var indexData : [IndexModel]? = nil
-    let provider = MoyaProvider<Service>()
     var lives: [CourseItemModel]? //直播课
     var recommends : [CourseItemModel]? //推荐课程
     var primaries: [CourseItemModel]? //优质好课
@@ -27,8 +29,8 @@ class IndexViewModel : LoadableObject {
     
     func load() {
         state = .loading
-        
-        ApiLoadingProvider.request(Service.index, model:[IndexModel].self ) { [weak self] (bSuccess, returnData, error) in
+                
+        ApiLoadingProvider.getIndex(model:[IndexModel].self) { [weak self] (bSuccess, returnData, error) in
             if(bSuccess) {
                 //成功
                 self?.indexData = returnData
@@ -47,14 +49,14 @@ class IndexViewModel : LoadableObject {
         for category in _data {
             let courses = category.courses
             guard let _courses = courses else { continue; }
-            if(category.sort == 0) {
+            if(category.sort == CourseType.live.rawValue) {
                 _filterLiveCourse(courses: _courses)
-            } else if(category.sort == 1) {
+            } else if(category.sort == CourseType.recommend.rawValue) {
                 _filterRecommendCourse(courses: _courses)
-            } else if(category.sort == 2) {
-            } else if(category.sort == 3) {
+            } else if(category.sort == CourseType.career.rawValue) {
+            } else if(category.sort == CourseType.primary.rawValue) {
                 _filterPrimaryCourse(courses: _courses)
-            } else if(category.sort == 4) {
+            } else if(category.sort == CourseType.free.rawValue) {
                 _filterFreeCourse(courses: _courses)
             } else {
                 //do nothing
