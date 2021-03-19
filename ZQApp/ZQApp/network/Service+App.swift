@@ -55,15 +55,19 @@ extension MoyaProvider {
         })
     }
     
-//    open func getIndex<T: HandyJSON>(
-//        model: T.Type,
-//        completion: ( (_ bSuccess:Bool, _ returnData: T?, _ error:Error?) -> Void )?
-//    ) -> Cancellable? {
-//        ApiLoadingProvider.requestV1(Service.index, model: model, completion: { (bSuccess:Bool, returnData:T?, error:Error?) in
-//            guard let completion = completion else { return }
-//            completion(bSuccess, returnData, error)
-//        })
-//    }
+    open func postSearch<T: HandyJSON>(
+        model: T.Type,
+        courseTypes:String,
+        keyword:String,
+        page:Int,
+        pageSize:Int,
+        completion: ( (_ bSuccess:Bool, _ returnData: T?, _ error:Error?) -> Void )?
+    ) -> Cancellable? {
+        ApiLoadingProvider.baseRequestV1(Service.search(courseTypes: courseTypes, keyword: keyword, page: page, pageSize: pageSize), model: model, completion: { (bSuccess:Bool, returnData:T?, error:Error?) in
+            guard let completion = completion else { return }
+            completion(bSuccess, returnData, error)
+        })
+    }
     
     
 }

@@ -12,57 +12,12 @@ var someCondition: Bool = false
 struct ContentView: View {
     
     var body: some View {
-//        Image("recommend")
-        IndexView()
-//        RecommendContentView()
-//        Text("test")
-//        return VStack(){
-//            MapView()
-//                .frame( height: 300)
-//                .ignoresSafeArea(edges: .top)
-//
-//            CircleImage().offset(y: -50)
-//                .padding(.bottom, -30)
-//
-//            VStack(alignment: .leading){
-//                Text("Turtle Rock").font(.title)
-//                HStack {
-//                    Text("PlaceholderP rPlaceholder")
-//                    Spacer()
-//                    Text("Cannda")
-//                }
-//                .font(.subheadline)
-//                .foregroundColor(.secondary)
-//
-//                Divider()
-//
-//                Text("PlaceholderP rPlaceholder").font(.title)
-//                Text("Cannda")
-//
-//            }.padding()
-//
-//            Spacer()
-//        }
+
+//        IndexView()
+        SearchView()
+
     }
-    //    var body: some View {
-    //        return VStack(alignment: .leading) {
-    //            ExtractedView()
-    //        }
-    //    }
-    //
-    //    var body: some View {
-    //        Image("turtlerock")
-    //             .clipShape(Circle())
-    //             .overlay(
-    //                 Circle().stroke(Color.white, lineWidth: 4))
-    //             .shadow(radius: 10)
-    //    }
-    
-    //    var body: some View {
-    //        List{
-    //            LandmarkRow(landmark: landmark)
-    //        }
-    //    }
+
 }
 
 struct ContentView_Previews: PreviewProvider {

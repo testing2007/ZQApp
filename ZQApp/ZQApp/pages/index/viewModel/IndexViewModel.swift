@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import Moya
-import HandyJSON
 
 enum CourseType:Int {
     case live = 0
@@ -24,12 +22,11 @@ class IndexViewModel : LoadableObject {
     var primaries: [CourseItemModel]? //优质好课
     var frees:[CourseItemModel]? //免费好客
     
-    
     @Published private(set) var state = LoadingState<[IndexModel]?>.idle
     
     func load() {
         state = .loading
-                
+        
         ApiLoadingProvider.getIndex(model:[IndexModel].self) { [weak self] (bSuccess, returnData, error) in
             if(bSuccess) {
                 //成功

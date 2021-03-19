@@ -108,7 +108,7 @@ extension Response {
 extension MoyaProvider {
     
     @discardableResult
-    open func baseRequest(
+    func baseRequest(
         _ target: Target,
         completion: @escaping (_ result: Result<Moya.Response, MoyaError>) -> Void
     ) -> Cancellable? {

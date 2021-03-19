@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import Moya
+import HandyJSON
 
 protocol LoadableObject : ObservableObject {
     associatedtype Output //实际需要输出的
