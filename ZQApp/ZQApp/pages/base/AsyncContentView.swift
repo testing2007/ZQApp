@@ -28,7 +28,7 @@ struct AsyncContentView<Source:LoadableObject, LoadingView:View, Content:View> :
             Color.clear.onAppear(perform: source.load)
         case .loading:
 //            ProgressView()
-            loadingView
+            loadingView //TODO: 即便 loadingView 不设置，下拉刷新会出现空白页
         case .failed(let error):
 //            Text("errorView")
             ErrorView(error:error, retryHandler: source.load)

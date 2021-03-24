@@ -9,6 +9,14 @@ import Foundation
 
 class SearchViewModel : LoadableObject {
 
+    var refreshing:Bool = false
+    var loadover:Bool = true
+//    var bottomRefreshable:Bool = true
+//    var showNoMoreData:Bool=true
+//    var showBottomLoading:Bool=true
+//    var noDataPrompt:String="数据无"
+
+    var max:Int=0
     var searchData: [SearchItemModel] = []
     var pageIndex:Int = 0
 
@@ -16,21 +24,32 @@ class SearchViewModel : LoadableObject {
     
     func load() {
         
-//        _pageLoad()
+        loadMore()
         
     }
     
-    func isLastItem<T:Identifiable>(_ item:T) {
-//        if self.searchData.isThresholdItem(offset: 10, item: item) {
-        if self.searchData.isLastItem(item) {
-             self._pageLoad()
-         }
+//    var canLoadMore: Bool {
+//        if (self.refreshing) {
+//            return true
+//        } else {
+//            NSLog("self.searchData.count=%ld, max=%ld", self.searchData.count, max)
+//            return self.searchData.count < max
+//        }
+//
+//    }
+    
+    func refresh() {
+        self.max = 0
+        self.pageIndex = 0
+        self.searchData = []
+        self.loadMore()
     }
     
-    func _pageLoad() {
-        state = .loading
+    func loadMore() {
+//        state = .loading
         
-        ApiLoadingProvider.postSearch(model: SearchModel.self, courseTypes: "3,4,5,6", keyword: "1", page: pageIndex+1, pageSize: 10) {  (bSuccess, returnData, error) in
+        ApiProvider.postSearch(model: SearchModel.self, courseTypes: "3,4,5,6", keyword: "1", page: pageIndex+1, pageSize: 10) {  (bSuccess, returnData, error) in
+            self.refreshing = false
             if(bSuccess) {
 //                self?.searchData = returnData
                 guard let returnData = returnData else {
@@ -42,19 +61,16 @@ class SearchViewModel : LoadableObject {
 
                 self.searchData.append(contentsOf:returnData.items ?? [])
                 
-    
-                func _modifyId(_ item:inout SearchItemModel, _ index:Int) {
-                    item.id = index
-                }
+                self.max = returnData.totalCount ?? self.searchData.count;
                 
-                var i = 0
-                for (i, item) in self.searchData.enumerated() {
-//                    print("在 index = \(index) 位置上的值为 \(item)")
-                    _modifyId(&self.searchData[i], i)
+                if(self.max == self.searchData.count) {
+                    self.loadover = true
+                } else {
+                    self.loadover = false
                 }
-                
                 
                 self.state = .loaded(self.searchData)
+                
                 print("success")
             } else {
                 print("fail")

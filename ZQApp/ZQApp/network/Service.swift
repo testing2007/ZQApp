@@ -22,7 +22,7 @@ extension Service : TargetType {
         switch self {
         case .index:
             return "/home/home-courses"
-        case .search:
+        case let .search(courseTypes, keyword, page, pageSize):
             return "/bxg/search/courseSearch"
         }
     }
@@ -44,7 +44,8 @@ extension Service : TargetType {
                 "keyword": keyword,
                 "page": page,
                 "pageSize": pageSize,
-            ], encoding: JSONEncoding.default)//encoding: URLEncoding.queryString
+            ],encoding: URLEncoding.httpBody)
+//            encoding: JSONEncoding.default)//encoding: URLEncoding.queryString
         
         }
     }
@@ -58,7 +59,7 @@ extension Service : TargetType {
     }
     var headers: [String: String]? {
         return [
-            "Content-type": "application/json",
+//            "Content-type": "application/json",
             "bxg-os":"iOS",
             "bxg-platform":"iPhone",
             "bxg-version": "v1.0.0",

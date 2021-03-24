@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct SearchContentView : View {
-    var vm: SearchViewModel
+    @ObservedObject var vm: SearchViewModel //一定要带上 @ObservedObject， 否则加载下一页就不能刷新界面
     init(vm:SearchViewModel) {
         self.vm = vm
         // To remove only extra separators below the list:
@@ -19,7 +19,6 @@ struct SearchContentView : View {
         // To remove all separators including the actual ones:
         UITableView.appearance().separatorStyle = .none
     }
-    
     var body: some View {
         let items = self.vm.searchData
         if items.count == 0 {
@@ -27,16 +26,21 @@ struct SearchContentView : View {
         }
 
         return AnyView(
-            List(items) {item in
-                VStack(alignment: .leading) {
-                    Text(item.description ?? "")
-                }.onAppear() {
-                    self.vm.isLastItem(item)
-                }
-            }
+            BRefreshableScrollView(height: 80, refreshing: self.$vm.refreshing, loadover: self.$vm.loadover, action: {
+                self.vm.refresh()
+            }, footerAction: {
+                self.vm.loadMore()
+            }, content: {
+                ForEach.init(items, id: \.self) { item in
+                                        Text("\(item.courseId ?? 0)")
+                                            .frame(height: 50)
+                                            .frame(maxWidth: .infinity)
+                                            .background(Color.init(white: 0.9).clipShape(RoundedRectangle(cornerRadius: 8))
+                                                            .shadow(radius: 4))
+                                            .padding(4)
+                                    }
+            })
         )
-
-
     }
 }
 
@@ -45,8 +49,7 @@ struct SearchView: View {
     @ObservedObject var searchVM : SearchViewModel = SearchViewModel()
     
     var body: some View {
-        AsyncContentView(source:searchVM,
-                         loadingView:Placeholder()) { data in
+        AsyncContentView(source:searchVM) { data in
             SearchContentView(vm: searchVM)
         }
     }
@@ -67,3 +70,49 @@ struct SearchView_Previews: PreviewProvider {
         SearchView()
     }
 }
+
+
+//            addPullRefresh(refreshing: self.$vm.refreshing, loadover: self.$vm.loadover, headerAction: {
+//                self.vm.refresh()
+//            }, footerAction: {
+//                self.vm.loadMore()
+//            })
+            
+            
+            
+            
+//            ScrollView {
+//                LazyVStack {
+//                    ForEach.init(items, id: \.self) { item in
+////                        Text(item.courseName ?? "")
+//                        Text("\(item.courseId ?? 0)")
+//                            .frame(height: 50)
+//                            .frame(maxWidth: .infinity)
+//                            .background(Color.init(white: 0.9).clipShape(RoundedRectangle(cornerRadius: 8))
+//                                            .shadow(radius: 4))
+//                            .padding(4)
+//                    }
+//
+//                    if self.vm.canLoadMore {
+//                        Text("Loading ...")
+//                            .padding()
+//                            .onAppear {
+//                                debugPrint("onAppear")
+//                                self.vm.loadMore()
+//                            }
+//                    }
+//
+//                }
+//
+//            }
+            
+            
+//            List {
+//
+//                ForEach(items, id:\.self) { item in
+//                    Text(item.courseName ?? "")
+//                }
+//                Button(action: loadMore) {
+//                       Text("")
+//                }
+//            }

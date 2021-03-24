@@ -10,6 +10,7 @@
 
 #### 工具类
 [分页加载](https://juejin.cn/post/6844903616680034318)
+[下拉刷新](https://www.boxueio.com/series/build-boxue-app-in-mvvm/episode-documents/670) ( [英文版](https://swiftui-lab.com/scrollview-pull-to-refresh/) )
 
 #### 对齐
 ##### view的对齐 alignmentGuide 与 容器对齐（HStack/VStack/ZStack）alignment
