@@ -26,7 +26,12 @@ struct SearchContentView : View {
         }
 
         return AnyView(
-            BRefreshableScrollView(height: 80, refreshing: self.$vm.refreshing, loadover: self.$vm.loadover, action: {
+            ZQRefreshableScrollView(height: 80,
+                                   refreshing: self.$vm.refreshing,
+                                   loadover: self.$vm.loadover,
+                                   showBottomLoading:.constant(true),
+                                   noDataPrompt:"数据已加载完毕",
+                                   action: {
                 self.vm.refresh()
             }, footerAction: {
                 self.vm.loadMore()

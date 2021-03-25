@@ -24,31 +24,32 @@ class SearchViewModel : LoadableObject {
     
     func load() {
         
-        loadMore()
+        NSLog("load")
+        load(true)
         
     }
     
-//    var canLoadMore: Bool {
-//        if (self.refreshing) {
-//            return true
-//        } else {
-//            NSLog("self.searchData.count=%ld, max=%ld", self.searchData.count, max)
-//            return self.searchData.count < max
-//        }
-//
-//    }
     
     func refresh() {
+        NSLog("refresh")
+        let isShowLoading:Bool = self.pageIndex == 0 ? true : false
         self.max = 0
         self.pageIndex = 0
         self.searchData = []
-        self.loadMore()
+        self.load(isShowLoading)
+        
     }
     
     func loadMore() {
+        if(self.max > self.searchData.count) {
+            self.load(false)
+        }
+    }
+    
+    func load(_ isShowLoading:Bool) {
 //        state = .loading
         
-        ApiProvider.postSearch(model: SearchModel.self, courseTypes: "3,4,5,6", keyword: "1", page: pageIndex+1, pageSize: 10) {  (bSuccess, returnData, error) in
+        ApiLoadingProvider.postSearch(model: SearchModel.self, courseTypes: "3,4,5,6", keyword: "1", page: pageIndex+1, pageSize: 10) {  (bSuccess, returnData, error) in
             self.refreshing = false
             if(bSuccess) {
 //                self?.searchData = returnData
@@ -56,6 +57,10 @@ class SearchViewModel : LoadableObject {
                     self.state = .loaded(self.searchData)
                     return
                 }
+//                if(self.pageIndex == 0) {
+//                    //执行了刷新
+//                    self.searchData = []
+//                }
                 
                 self.pageIndex = self.pageIndex + 1
 

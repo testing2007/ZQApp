@@ -1,226 +1,306 @@
 //
-//  ZQRefreshableScrollView.swift
-//  ZQApp
+//  Modifier+Refreshable.swift
+//  SUIDemo
 //
-//  Created by ZhiQiang wei on 2021/3/23.
+//  Created by west on 29/01/21.
 //
-
-import Combine
 import SwiftUI
 
-//private var contentBounds: CGRect = .zero
-public struct RefreshableScrollView<Content: View>: View {
-  @State private var previousScrollOffset: CGFloat = 0
-  @State private var scrollOffset: CGFloat = 0
-  
-  // Keep the loading indication area above the scroll view.
-  @State private var frozen: Bool = false
-  @State private var rotation: Angle = .degrees(0)
-  
-  // Trigger the action after scrolling over the threshold.
-  var threshold: CGFloat = 80
-  
-  // Pull down to refresh
-  @Binding var refreshing: Bool
-  
-  // Pull up to refresh
-  private let bottomRefreshable: Bool
-  @Binding var showNoMoreData: Bool
-  @Binding var showBottomLoading: Bool
-  var noDataPrompt: String
-  
-  @State var contentBounds: CGRect = .zero
-  
-  let content: Content
-  
-  public init(height: CGFloat = 80,
-              refreshing: Binding<Bool>,
-              bottomRefreshable: Bool = false,
-              showNoMoreData: Binding<Bool> = .constant(false),
-              showBottomLoading: Binding<Bool> = .constant(false),
-              noDataPrompt: String = "",
-              @ViewBuilder content: () -> Content) {
-    self.threshold = height
-    self._refreshing = refreshing
-    self.bottomRefreshable = bottomRefreshable
-    self._showNoMoreData = showNoMoreData
-    self._showBottomLoading = showBottomLoading
-    self.noDataPrompt = noDataPrompt
-    self.content = content()
-  }
-  
-  public var body: some View {
-    ScrollView {
-      ZStack(alignment: .top) {
-        MovingView()
-        VStack {
-          /// GeometryReader {
-          ///   self.content.preference(
-          ///     key: RefreshableKey.PrefKey.self,
-          ///     value: [
-          ///       RefreshableKey.PrefData(vType: .contentView,
-          ///       bounds: $0.frame(in: CoordinateSpace.local))
-          ///     ]) }
-          self.content
-            .anchorPreference(
-              key: RefreshableKey.ContentPrefKey.self,
-              value: .bounds,
-              transform: { [RefreshableKey.ContentPrefData(vType: .contentView, bounds: $0)] })
-          
-          if bottomRefreshable {
-            ZStack {
-              ActivityIndicator().opacity(showBottomLoading ? 1 : 0)
-              Text(noDataPrompt).opacity(showNoMoreData ? 1 : 0)
-            }
-            .foregroundColor(Color.secondary)
-            .padding([.top, .bottom], 5)
-          }
-        }
-        .alignmentGuide(.top, computeValue: { d in
-            (self.refreshing && self.frozen ? -self.threshold : 0.0)
-        })
-        SymbolView(height: self.threshold, loading: self.refreshing, frozen: self.frozen, rotation: self.rotation)
-      }
-    }
-//    .backgroundPreferenceValue(RefreshableKey.PrefKey.self) {
-//      (preferences: [RefreshableKey.PrefData]) in
-//      return GeometryReader { (proxy: GeometryProxy) -> FixedView in
-//        let p = preferences.first(where: { $0.vType == .contentView })!
-//        self.contentBounds = p.bounds
-//
-//        return FixedView()
-//      }
+//extension View{
+//    func addPullRefresh(refreshing: Binding<Bool>, loadover: Binding<Bool>, headerAction: @escaping () -> Void, footerAction: @escaping () -> Void) -> some View {
+//        modifier(RefreshableModifier(refreshing: refreshing, loadover: loadover, action: headerAction, footerAction: footerAction))
 //    }
-    .backgroundPreferenceValue(RefreshableKey.ContentPrefKey.self) {
-      (preferences: [RefreshableKey.ContentPrefData]) in
-      return GeometryReader { (proxy: GeometryProxy) -> FixedView in
-        if self.bottomRefreshable {
-          let p = preferences.first(where: { $0.vType == .contentView })
-          
-          DispatchQueue.main.async {
-            if let pref = p {
-              self.contentBounds = proxy[pref.bounds]
+//}
+//
+//extension ScrollView {
+//
+//    public func fixFlickering() -> some View {
+//
+//        return self.fixFlickering { (scrollView) in
+//
+//            return scrollView
+//        }
+//    }
+//
+//    public func fixFlickering<T: View>(@ViewBuilder configurator: @escaping (ScrollView<AnyView>) -> T) -> some View {
+//
+//        GeometryReader { geometryWithSafeArea in
+//            GeometryReader { geometry in
+//                configurator(
+//                ScrollView<AnyView>(self.axes, showsIndicators: self.showsIndicators) {
+//                    AnyView(
+//                    VStack {
+//                        self.content
+//                    }
+//                    .padding(.top, geometryWithSafeArea.safeAreaInsets.top)
+//                    .padding(.bottom, geometryWithSafeArea.safeAreaInsets.bottom)
+//                    .padding(.leading, geometryWithSafeArea.safeAreaInsets.leading)
+//                    .padding(.trailing, geometryWithSafeArea.safeAreaInsets.trailing)
+//                    )
+//                }
+//                )
+//            }
+//            .edgesIgnoringSafeArea(.all)
+//        }
+//    }
+//}
+
+//fileprivate struct RefreshableModifier:ViewModifier {
+//    @Binding var refreshing: Bool
+//    @Binding var loadover: Bool
+//    let action: () -> Void
+//    let footerAction: () -> Void
+//
+//    func body(content: Content) -> some View {
+//        RefreshableScrollView(refreshing: $refreshing, loadover: $loadover, action: action, footerAction:footerAction) {
+//            content
+//        }
+//    }
+//}
+
+
+//fileprivate
+struct ZQRefreshableScrollView<Content: View>: View {
+    @State private var previousScrollOffset: CGFloat = 0
+    @State private var scrollOffset: CGFloat = 0
+    @State private var frozen: Bool = false
+    @State private var rotation: Angle = .degrees(0)
+    
+    @State private var footerFrozen: Bool = false
+    
+    @Binding var refreshing: Bool
+    @Binding var loadover: Bool
+    @Binding var showBottomLoading:Bool
+    var noDataPrompt:String
+    
+    var threshold: CGFloat = 80
+    let content: Content
+    let action: () -> Void
+    let footerAction: () -> Void
+
+    
+    init(height: CGFloat = 80,
+         refreshing: Binding<Bool>,
+         loadover: Binding<Bool>,
+         showBottomLoading:Binding<Bool> = .constant(false),
+         noDataPrompt: String = "",
+         action: @escaping () -> Void,
+         footerAction: @escaping () -> Void,
+         @ViewBuilder content: () -> Content) {
+        self.threshold = height
+        self._refreshing = refreshing
+        self._loadover = loadover
+        self._showBottomLoading = showBottomLoading
+        self.noDataPrompt = noDataPrompt
+        self.action = action
+        self.footerAction = footerAction
+        self.content = content()
+        
+    }
+    
+    var body: some View {
+        return VStack {
+            ScrollView {
+                ZStack(alignment: .top) {
+                    MovingView()
+                    
+                    VStack {
+                        self.content
+                        LoadoverView(loadover: $loadover, showBottomLoading: $showBottomLoading, noDataPrompt: noDataPrompt)
+                        MovingView(isBottom: true)
+                    }.alignmentGuide(.top, computeValue: { d in (self.refreshing && self.frozen) ? -self.threshold : 0.0 })
+                    
+                    SymbolView(height: self.threshold, loading: self.refreshing, frozen: self.frozen, rotation: self.rotation)
+                }
             }
-          }
+            //            .fixFlickering()
+            .background(FixedView())
+            .onPreferenceChange(RefreshableKeyTypes.PrefKey.self) { values in
+                self.refreshLogic(values: values)
+            }
+        }
+    }
+    
+    func refreshLogic(values: [RefreshableKeyTypes.PrefData]) {
+        DispatchQueue.main.async {
+            self.refreshLogicHeader(values: values)
+            self.refreshLogicFooter(values: values)
+        }
+    }
+    
+    func refreshLogicHeader(values: [RefreshableKeyTypes.PrefData]) {
+        // Calculate scroll offset
+        let movingBounds = values.first { $0.vType == .movingView }?.bounds ?? .zero
+        let fixedBounds = values.first { $0.vType == .fixedView }?.bounds ?? .zero
+        
+        guard movingBounds.minY > fixedBounds.minY else {
+            return
         }
         
-        return FixedView()
-      }
-    }
-    .onPreferenceChange(RefreshableKey.PrefKey.self ) { preferences in
-      self.refreshLogic(values: preferences)
-    }
-  }
-  
-  func refreshLogic(values: [RefreshableKey.PrefData]) {
-    let movingBounds = values.first { $0.vType == .movingView }?.bounds ?? .zero
-    let fixedBounds = values.first { $0.vType == .fixedView }?.bounds ?? .zero
-    
-    scrollOffset = movingBounds.minY - fixedBounds.minY
-    rotation = symbolRotation(scrollOffset)
-    
-    // Crossing the threshold on the way down, we start the refreshing process
-    if !refreshing && (scrollOffset > threshold && previousScrollOffset <= threshold) {
-      refreshing = true
-    }
-    
-    if refreshing {
-      /// Keep the symbol view above the scrollview during updating process.
-      /// `self.scrollOffset <= self.threshold` prevents the UI from scrolling back
-      /// to the top of screen.
-      if previousScrollOffset > threshold && scrollOffset <= threshold {
-        frozen = true
-      }
-    }
-    else {
-      frozen = false
-    }
-    
-    #if DEBUG
-    print("Scroll offset: \(scrollOffset)")
-    print("Fix height: \(fixedBounds.size.height)")
-    print("Content bounds: \(contentBounds)")
-    print("-------------------------")
-    #endif
-    if bottomRefreshable,
-      contentBounds.height > 0 &&
-      scrollOffset < -(contentBounds.height - fixedBounds.size.height) &&
-      showBottomLoading == false &&
-      showNoMoreData == false {
-      print("display bottom indicator")
-      showBottomLoading = true
-    }
-    
-    previousScrollOffset = scrollOffset
-  }
-  
-  func symbolRotation(_ scrollOffset: CGFloat) -> Angle {
-    if scrollOffset < threshold * 0.6 {
-      return .degrees(0)
-    }
-    else {
-      let h = Double(threshold)
-      let d = Double(scrollOffset)
-      let v = max(min(d - (h * 0.6), h * 0.4), 0)
-      
-      return .degrees(180 * v / (h * 0.4))
-    }
-  }
-  
-  struct SymbolView: View {
-    var height: CGFloat
-    var loading: Bool
-    var frozen: Bool
-    var rotation: Angle
-    
-    var body: some View {
-      Group {
-        if loading {
-          VStack {
-            Spacer()
-            ActivityIndicator()
-            Spacer()
-          }
-          .frame(height: height).fixedSize()
-          .offset(y: -height + (loading && frozen ? height : 0))
+        self.scrollOffset  = movingBounds.minY - fixedBounds.minY
+        
+        self.rotation = self.symbolRotation(self.scrollOffset)
+        
+        // Crossing the threshold on the way down, we start the refresh process
+        if !self.refreshing && (self.scrollOffset > self.threshold && self.previousScrollOffset <= self.threshold) {
+            self.refreshing = true
+            self.action()
         }
-        else {
-          Image(systemName: "arrow.down")
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .frame(width: height * 0.25, height: height*0.25).fixedSize()
-            .padding(height * 0.375)
-            .rotationEffect(rotation)
-            .offset(y: -height + (loading && frozen ? height : 0))
+        
+        if self.refreshing {
+            // Crossing the threshold on the way up, we add a space at the top of the scrollview
+            if self.previousScrollOffset > self.threshold && self.scrollOffset <= self.threshold {
+                self.frozen = true
+            }
+        } else {
+            // remove the sapce at the top of the scroll view
+            self.frozen = false
         }
-      }
+        
+        // Update last scroll offset
+        self.previousScrollOffset = self.scrollOffset
     }
-  }
-  
-  struct MovingView: View {
-    var body: some View {
-      GeometryReader {
-        Color.clear
-          /// Compare to:
-          /// ```
-          /// .anchorPreference(key: TagPreferenceKey.self,
-          ///                   value: .bounds,
-          ///                   transform: { [TagPreferenceData(bounds: $0)] })
-          /// ```
-          .preference(key: RefreshableKey.PrefKey.self,
-                      value: [RefreshableKey.PrefData(vType: .movingView, bounds: $0.frame(in: .global))])
-      }
-      .frame(height: 0)
+    
+    
+    func refreshLogicFooter(values: [RefreshableKeyTypes.PrefData]) {
+        let fixedBounds = values.first { $0.vType == .fixedView }?.bounds ?? .zero
+        let bottomBounds = values.first { $0.vType == .bottomView }?.bounds ?? .zero
+        
+        //        print("movingBounds:\(movingBounds)")
+        //        print("fixedBounds:\(fixedBounds)")
+        //        print("bottomBounds:\(bottomBounds)")
+        //        print("fixedBounds.maxY:\(fixedBounds.maxY)")
+        //        print("bottomBounds.maxY:\(bottomBounds.maxY)")
+        
+        guard bottomBounds.maxY > fixedBounds.minY else {
+            return
+        }
+        if bottomBounds.maxY > fixedBounds.maxY{
+            self.footerFrozen = false
+        }
+        guard self.footerFrozen == false else {
+            return
+        }
+        if bottomBounds.maxY < fixedBounds.maxY{
+            self.footerFrozen = true
+            self.footerAction()
+        }
     }
-  }
-  
-  struct FixedView: View {
-    var body: some View {
-      GeometryReader {
-        Color.clear
-          .preference(key: RefreshableKey.PrefKey.self,
-                      value: [RefreshableKey.PrefData(vType: .fixedView, bounds: $0.frame(in: .global))])
-      }
+    
+    func symbolRotation(_ scrollOffset: CGFloat) -> Angle {
+        
+        // We will begin rotation, only after we have passed
+        // 60% of the way of reaching the threshold.
+        if scrollOffset < self.threshold * 0.60 {
+            return .degrees(0)
+        } else {
+            // Calculate rotation, based on the amount of scroll offset
+            let h = Double(self.threshold)
+            let d = Double(scrollOffset)
+            let v = max(min(d - (h * 0.6), h * 0.4), 0)
+            return .degrees(180 * v / (h * 0.4))
+        }
     }
-  }
+    
+    struct SymbolView: View {
+        var height: CGFloat
+        var loading: Bool
+        var frozen: Bool
+        var rotation: Angle
+        
+        
+        var body: some View {
+            Group {
+                if self.loading { // If loading, show the activity control
+                    VStack {
+                        Spacer()
+                        ActivityRep()
+                        Spacer()
+                    }.frame(height: height).fixedSize()
+                    .offset(y: -height + (self.loading && self.frozen ? height : 0.0))
+                } else {
+                    Image(systemName: "arrow.down") // If not loading, show the arrow
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: height * 0.25, height: height * 0.25).fixedSize()
+                        .padding(height * 0.375)
+                        .rotationEffect(rotation)
+                        .offset(y: -height + (loading && frozen ? +height : 0.0))
+                }
+            }
+        }
+    }
+    
+    struct MovingView: View {
+        var isBottom = false
+        var body: some View {
+            GeometryReader { proxy in
+                Color.clear.preference(key: RefreshableKeyTypes.PrefKey.self, value: [RefreshableKeyTypes.PrefData(vType: isBottom ? .bottomView: .movingView, bounds: proxy.frame(in: .global))])
+            }.frame(height: 0)
+        }
+    }
+    
+    
+    struct FixedView: View {
+        var body: some View {
+            GeometryReader { proxy in
+                Color.clear.preference(key: RefreshableKeyTypes.PrefKey.self, value: [RefreshableKeyTypes.PrefData(vType: .fixedView, bounds: proxy.frame(in: .global))])
+            }
+        }
+    }
+    
+    struct LoadoverView: View {
+        @Binding var loadover:Bool
+        @Binding var showBottomLoading:Bool
+        var noDataPrompt:String
+
+        var body: some View {
+            Group{
+                ZStack {
+                    // ActivityIndicator().opacity(showBottomLoading ? 1 : 0)
+                    if showBottomLoading {
+                        ActivityRep().opacity(loadover ? 0 : 1)
+                        Text(noDataPrompt).opacity(loadover ? 1 : 0)
+                    }
+                }
+                .foregroundColor(Color.secondary)
+                .padding([.top, .bottom], 5)
+            }
+        }
+    }
+}
+
+//fileprivate
+struct RefreshableKeyTypes {
+    enum ViewType: Int {
+        case movingView
+        case fixedView
+        case bottomView
+    }
+    
+    struct PrefData: Equatable {
+        let vType: ViewType
+        let bounds: CGRect
+    }
+    
+    struct PrefKey: PreferenceKey {
+        static var defaultValue: [PrefData] = []
+        
+        static func reduce(value: inout [PrefData], nextValue: () -> [PrefData]) {
+            value.append(contentsOf: nextValue())
+        }
+        
+        typealias Value = [PrefData]
+    }
+}
+
+//fileprivate
+struct ActivityRep: UIViewRepresentable {
+    func makeUIView(context: UIViewRepresentableContext<ActivityRep>) -> UIActivityIndicatorView {
+        return UIActivityIndicatorView()
+    }
+    
+    func updateUIView(_ uiView: UIActivityIndicatorView, context: UIViewRepresentableContext<ActivityRep>) {
+        uiView.startAnimating()
+    }
 }

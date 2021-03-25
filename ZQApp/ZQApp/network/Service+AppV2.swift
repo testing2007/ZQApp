@@ -57,7 +57,7 @@ extension MoyaProvider {
         model: T.Type,
         completion: ( (_ bSuccess:Bool, _ returnData: T?, _ error:Error?) -> Void )?
     ) -> Cancellable? {
-        ApiLoadingProvider.baseRequestV2(Service.index, model: model, completion: { (bSuccess:Bool, returnData:T?, error:Error?) in
+        self.baseRequestV2(Service.index as! Target, model: model, completion: { (bSuccess:Bool, returnData:T?, error:Error?) in
             guard let completion = completion else { return }
             completion(bSuccess, returnData, error)
         })
