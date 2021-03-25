@@ -1,5 +1,5 @@
 //
-//  ErrorView.swift
+//  ZQErrorView.swift
 //  ZQApp
 //
 //  Created by ZhiQiang wei on 2021/3/8.
@@ -8,7 +8,7 @@
 import SwiftUI
 import Moya
 
-struct ErrorView: View {
+struct ZQErrorView: View {
     let error:Error?
     let retryHandler:(() -> Void)?
 
@@ -25,10 +25,10 @@ struct ErrorView: View {
     }
 }
 
-struct ErrorView_Previews: PreviewProvider {
+struct ZQErrorView_Previews: PreviewProvider {
     static var previews: some View {
-        ErrorView(error:nil, retryHandler:{ ()->Void in
-            print("ErrorView_Previews")
+        ZQErrorView(error:nil, retryHandler:{ ()->Void in
+            print("ZQErrorView_Previews")
         })
     }
 }

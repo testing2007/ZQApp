@@ -7,23 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9436EEB925F5BF440022A79B /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9436EEB825F5BF440022A79B /* ErrorView.swift */; };
+		9436EEB925F5BF440022A79B /* ZQErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9436EEB825F5BF440022A79B /* ZQErrorView.swift */; };
 		9437306C25F76259000A44EB /* ZQTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9437306B25F76259000A44EB /* ZQTextFieldStyle.swift */; };
 		9437309D25F78752000A44EB /* ZQFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9437309C25F78752000A44EB /* ZQFont.swift */; };
 		943EE01D26043859000BC1A7 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943EE01C26043859000BC1A7 /* SearchViewModel.swift */; };
-		943EE02326043FF4000BC1A7 /* Service+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943EE02226043FF4000BC1A7 /* Service+App.swift */; };
-		943EE02626044145000BC1A7 /* Service+AppV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943EE02526044145000BC1A7 /* Service+AppV2.swift */; };
+		943EE02326043FF4000BC1A7 /* ZQService+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943EE02226043FF4000BC1A7 /* ZQService+App.swift */; };
+		943EE02626044145000BC1A7 /* ZQService+AppV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943EE02526044145000BC1A7 /* ZQService+AppV2.swift */; };
 		943EE02F260470C8000BC1A7 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943EE02E260470C8000BC1A7 /* SearchModel.swift */; };
 		943EE03626047A01000BC1A7 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943EE03526047A01000BC1A7 /* SearchView.swift */; };
-		944ED18E25F08566006FBA22 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED18D25F08566006FBA22 /* Service.swift */; };
+		944ED18E25F08566006FBA22 /* ZQService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED18D25F08566006FBA22 /* ZQService.swift */; };
 		944ED19925F08BA5006FBA22 /* IndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED19825F08BA5006FBA22 /* IndexView.swift */; };
 		944ED1AF25F0AC96006FBA22 /* IndexViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED1AE25F0AC96006FBA22 /* IndexViewModel.swift */; };
 		944ED1BC25F0AFFA006FBA22 /* IndexModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED1BB25F0AFFA006FBA22 /* IndexModel.swift */; };
-		944ED1CC25F0DA28006FBA22 /* ServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED1CB25F0DA28006FBA22 /* ServiceModel.swift */; };
-		944ED20825F1D867006FBA22 /* TopVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED20725F1D867006FBA22 /* TopVC.swift */; };
-		944ED20B25F21292006FBA22 /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED20A25F21292006FBA22 /* LoadingState.swift */; };
-		944ED20F25F21379006FBA22 /* LoadableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED20E25F21379006FBA22 /* LoadableObject.swift */; };
-		944ED21225F214B3006FBA22 /* AsyncContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED21125F214B3006FBA22 /* AsyncContentView.swift */; };
+		944ED1CC25F0DA28006FBA22 /* ZQServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED1CB25F0DA28006FBA22 /* ZQServiceModel.swift */; };
+		944ED20825F1D867006FBA22 /* ZQTopVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED20725F1D867006FBA22 /* ZQTopVC.swift */; };
+		944ED20B25F21292006FBA22 /* ZQLoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED20A25F21292006FBA22 /* ZQLoadingState.swift */; };
+		944ED20F25F21379006FBA22 /* ZQLoadableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED20E25F21379006FBA22 /* ZQLoadableObject.swift */; };
+		944ED21225F214B3006FBA22 /* ZQAsyncContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED21125F214B3006FBA22 /* ZQAsyncContentView.swift */; };
 		944ED21725F21905006FBA22 /* Combine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 944ED21625F21905006FBA22 /* Combine.framework */; };
 		947136F026098B6300A03713 /* ZQProxySize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947136EF26098B6300A03713 /* ZQProxySize.swift */; };
 		947136F62609929700A03713 /* ZQPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947136F52609929700A03713 /* ZQPreferenceKey.swift */; };
@@ -92,23 +92,23 @@
 
 /* Begin PBXFileReference section */
 		12DF7EC7477EE9B56FDE5821 /* Pods_ZQApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZQApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9436EEB825F5BF440022A79B /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		9436EEB825F5BF440022A79B /* ZQErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZQErrorView.swift; sourceTree = "<group>"; };
 		9437306B25F76259000A44EB /* ZQTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZQTextFieldStyle.swift; sourceTree = "<group>"; };
 		9437309C25F78752000A44EB /* ZQFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZQFont.swift; sourceTree = "<group>"; };
 		943EE01C26043859000BC1A7 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
-		943EE02226043FF4000BC1A7 /* Service+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Service+App.swift"; sourceTree = "<group>"; };
-		943EE02526044145000BC1A7 /* Service+AppV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Service+AppV2.swift"; sourceTree = "<group>"; };
+		943EE02226043FF4000BC1A7 /* ZQService+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ZQService+App.swift"; sourceTree = "<group>"; };
+		943EE02526044145000BC1A7 /* ZQService+AppV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ZQService+AppV2.swift"; sourceTree = "<group>"; };
 		943EE02E260470C8000BC1A7 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		943EE03526047A01000BC1A7 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
-		944ED18D25F08566006FBA22 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		944ED18D25F08566006FBA22 /* ZQService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZQService.swift; sourceTree = "<group>"; };
 		944ED19825F08BA5006FBA22 /* IndexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexView.swift; sourceTree = "<group>"; };
 		944ED1AE25F0AC96006FBA22 /* IndexViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexViewModel.swift; sourceTree = "<group>"; };
 		944ED1BB25F0AFFA006FBA22 /* IndexModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexModel.swift; sourceTree = "<group>"; };
-		944ED1CB25F0DA28006FBA22 /* ServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceModel.swift; sourceTree = "<group>"; };
-		944ED20725F1D867006FBA22 /* TopVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopVC.swift; sourceTree = "<group>"; };
-		944ED20A25F21292006FBA22 /* LoadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
-		944ED20E25F21379006FBA22 /* LoadableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableObject.swift; sourceTree = "<group>"; };
-		944ED21125F214B3006FBA22 /* AsyncContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncContentView.swift; sourceTree = "<group>"; };
+		944ED1CB25F0DA28006FBA22 /* ZQServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZQServiceModel.swift; sourceTree = "<group>"; };
+		944ED20725F1D867006FBA22 /* ZQTopVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZQTopVC.swift; sourceTree = "<group>"; };
+		944ED20A25F21292006FBA22 /* ZQLoadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZQLoadingState.swift; sourceTree = "<group>"; };
+		944ED20E25F21379006FBA22 /* ZQLoadableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZQLoadableObject.swift; sourceTree = "<group>"; };
+		944ED21125F214B3006FBA22 /* ZQAsyncContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZQAsyncContentView.swift; sourceTree = "<group>"; };
 		944ED21625F21905006FBA22 /* Combine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Combine.framework; path = System/Library/Frameworks/Combine.framework; sourceTree = SDKROOT; };
 		944ED21A25F2268E006FBA22 /* readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
 		947136EF26098B6300A03713 /* ZQProxySize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZQProxySize.swift; sourceTree = "<group>"; };
@@ -239,10 +239,10 @@
 		944ED14A25F07427006FBA22 /* network */ = {
 			isa = PBXGroup;
 			children = (
-				944ED1CB25F0DA28006FBA22 /* ServiceModel.swift */,
-				944ED18D25F08566006FBA22 /* Service.swift */,
-				943EE02226043FF4000BC1A7 /* Service+App.swift */,
-				943EE02526044145000BC1A7 /* Service+AppV2.swift */,
+				944ED1CB25F0DA28006FBA22 /* ZQServiceModel.swift */,
+				944ED18D25F08566006FBA22 /* ZQService.swift */,
+				943EE02226043FF4000BC1A7 /* ZQService+App.swift */,
+				943EE02526044145000BC1A7 /* ZQService+AppV2.swift */,
 			);
 			path = network;
 			sourceTree = "<group>";
@@ -298,10 +298,10 @@
 		944ED1B325F0AD79006FBA22 /* base */ = {
 			isa = PBXGroup;
 			children = (
-				944ED20A25F21292006FBA22 /* LoadingState.swift */,
-				944ED20E25F21379006FBA22 /* LoadableObject.swift */,
-				944ED21125F214B3006FBA22 /* AsyncContentView.swift */,
-				9436EEB825F5BF440022A79B /* ErrorView.swift */,
+				944ED20A25F21292006FBA22 /* ZQLoadingState.swift */,
+				944ED20E25F21379006FBA22 /* ZQLoadableObject.swift */,
+				944ED21125F214B3006FBA22 /* ZQAsyncContentView.swift */,
+				9436EEB825F5BF440022A79B /* ZQErrorView.swift */,
 			);
 			path = base;
 			sourceTree = "<group>";
@@ -313,7 +313,7 @@
 				94C959352609BFCD0016AEB0 /* refresh */,
 				94C95947260B59E70016AEB0 /* let-sExtend */,
 				9437309C25F78752000A44EB /* ZQFont.swift */,
-				944ED20725F1D867006FBA22 /* TopVC.swift */,
+				944ED20725F1D867006FBA22 /* ZQTopVC.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -670,28 +670,28 @@
 				944ED19925F08BA5006FBA22 /* IndexView.swift in Sources */,
 				94C95988260B59E70016AEB0 /* Date+Extensions.swift in Sources */,
 				94D7F03125FF30BC00AF593E /* RecommendView.swift in Sources */,
-				944ED1CC25F0DA28006FBA22 /* ServiceModel.swift in Sources */,
-				944ED20B25F21292006FBA22 /* LoadingState.swift in Sources */,
+				944ED1CC25F0DA28006FBA22 /* ZQServiceModel.swift in Sources */,
+				944ED20B25F21292006FBA22 /* ZQLoadingState.swift in Sources */,
 				94C95999260B59E70016AEB0 /* ColoredToggleStyle.swift in Sources */,
 				94D7F04525FF5D9500AF593E /* testAlignmentGuide.swift in Sources */,
 				94C95984260B59E70016AEB0 /* String+RegularExrepssion.swift in Sources */,
 				94C959A1260B59E70016AEB0 /* Input.swift in Sources */,
 				94C959A6260B59E70016AEB0 /* WillDisappearHandler.swift in Sources */,
-				944ED20825F1D867006FBA22 /* TopVC.swift in Sources */,
+				944ED20825F1D867006FBA22 /* ZQTopVC.swift in Sources */,
 				94C9598C260B59E70016AEB0 /* Binding+Extensions.swift in Sources */,
 				944ED1BC25F0AFFA006FBA22 /* IndexModel.swift in Sources */,
-				944ED21225F214B3006FBA22 /* AsyncContentView.swift in Sources */,
+				944ED21225F214B3006FBA22 /* ZQAsyncContentView.swift in Sources */,
 				94C95981260B59E70016AEB0 /* DateFormatter+Extensions.swift in Sources */,
 				94C9598B260B59E70016AEB0 /* Error+Extensions.swift in Sources */,
 				94AE2F9C25EC9B4E0020EF31 /* AppDelegate.swift in Sources */,
 				94C959AC260B59E70016AEB0 /* View+HideKeyboard.swift in Sources */,
-				943EE02326043FF4000BC1A7 /* Service+App.swift in Sources */,
-				944ED18E25F08566006FBA22 /* Service.swift in Sources */,
+				943EE02326043FF4000BC1A7 /* ZQService+App.swift in Sources */,
+				944ED18E25F08566006FBA22 /* ZQService.swift in Sources */,
 				944ED1AF25F0AC96006FBA22 /* IndexViewModel.swift in Sources */,
 				949A01D525ECE3780083063E /* CircleImage.swift in Sources */,
 				943EE02F260470C8000BC1A7 /* SearchModel.swift in Sources */,
 				94C959A5260B59E70016AEB0 /* TextView.swift in Sources */,
-				9436EEB925F5BF440022A79B /* ErrorView.swift in Sources */,
+				9436EEB925F5BF440022A79B /* ZQErrorView.swift in Sources */,
 				94C9598A260B59E70016AEB0 /* Double+Extensions.swift in Sources */,
 				9437309D25F78752000A44EB /* ZQFont.swift in Sources */,
 				94C95992260B59E70016AEB0 /* NetworkManagerProtocolMock.swift in Sources */,
@@ -725,7 +725,7 @@
 				94AE2F9E25EC9B4E0020EF31 /* SceneDelegate.swift in Sources */,
 				94AE2FA025EC9B4E0020EF31 /* ContentView.swift in Sources */,
 				94C959A2260B59E70016AEB0 /* LoadingViewProtocol.swift in Sources */,
-				943EE02626044145000BC1A7 /* Service+AppV2.swift in Sources */,
+				943EE02626044145000BC1A7 /* ZQService+AppV2.swift in Sources */,
 				94C95982260B59E70016AEB0 /* String+Extensions.swift in Sources */,
 				94C959A3260B59E70016AEB0 /* Publisher+TrackProgressSubscriber.swift in Sources */,
 				94D7F04225FF38A600AF593E /* LiveView.swift in Sources */,
@@ -733,7 +733,7 @@
 				94C9598D260B59E70016AEB0 /* View+Border.swift in Sources */,
 				94C9597F260B59E70016AEB0 /* Array+Extensions.swift in Sources */,
 				94C959A4260B59E70016AEB0 /* Loader.swift in Sources */,
-				944ED20F25F21379006FBA22 /* LoadableObject.swift in Sources */,
+				944ED20F25F21379006FBA22 /* ZQLoadableObject.swift in Sources */,
 				94C9599E260B59E70016AEB0 /* ViewModel.swift in Sources */,
 				94C9598E260B59E70016AEB0 /* Publisher+If.swift in Sources */,
 				94C95995260B59E70016AEB0 /* Publisher+Networking.swift in Sources */,

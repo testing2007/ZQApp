@@ -1,5 +1,5 @@
 //
-//  AsyncContentView.swift
+//  ZQAsyncContentView.swift
 //  ZQApp
 //
 //  Created by ZhiQiang wei on 2021/3/5.
@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import Combine
 
-struct AsyncContentView<Source:LoadableObject, LoadingView:View, Content:View> : View {
+struct ZQAsyncContentView<Source:ZQLoadableObject, LoadingView:View, Content:View> : View {
     @ObservedObject var source:Source
     var loadingView:LoadingView
     var content:(Source.Output) -> Content
@@ -30,8 +30,8 @@ struct AsyncContentView<Source:LoadableObject, LoadingView:View, Content:View> :
 //            ProgressView()
             loadingView //TODO: 即便 loadingView 不设置，下拉刷新会出现空白页
         case .failed(let error):
-//            Text("errorView")
-            ErrorView(error:error, retryHandler: source.load)
+//            Text("ZQErrorView")
+            ZQErrorView(error:error, retryHandler: source.load)
         case .loaded(let output):
             content(output)
         }
@@ -39,7 +39,7 @@ struct AsyncContentView<Source:LoadableObject, LoadingView:View, Content:View> :
 }
 
 typealias DefaultProgressView = ProgressView<EmptyView, EmptyView>
-extension AsyncContentView where LoadingView == DefaultProgressView {
+extension ZQAsyncContentView where LoadingView == DefaultProgressView {
     init(source:Source,
          @ViewBuilder content:@escaping (Source.Output)->Content
     ) {

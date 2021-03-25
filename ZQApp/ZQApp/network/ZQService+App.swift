@@ -1,5 +1,5 @@
 //
-//  Service+App.swift
+//  ZQService+App.swift
 //  ZQApp
 //
 //  Created by ZhiQiang wei on 2021/3/19.
@@ -22,7 +22,7 @@ extension MoyaProvider {
         return baseRequest(target, completion: {(result) in
 
             guard let completion = completion else { return }
-            guard let returnData = try? result.value?.mapModel(ServiceModel<T>.self) else {
+            guard let returnData = try? result.value?.mapModel(ZQServiceModel<T>.self) else {
                 //TODO: 打印错误日志， 404 也返回 result.success
                 switch result {
                     case let .success(moyaResponse):
@@ -63,7 +63,7 @@ extension MoyaProvider {
         pageSize:Int,
         completion: ( (_ bSuccess:Bool, _ returnData: T?, _ error:Error?) -> Void )?
     ) -> Cancellable? {
-        self.baseRequestV1(Service.search(courseTypes: courseTypes, keyword: keyword, page: page, pageSize: pageSize) as! Target, model: model, completion: { (bSuccess:Bool, returnData:T?, error:Error?) in
+        self.baseRequestV1(ZQService.search(courseTypes: courseTypes, keyword: keyword, page: page, pageSize: pageSize) as! Target, model: model, completion: { (bSuccess:Bool, returnData:T?, error:Error?) in
                 guard let completion = completion else { return }
                 completion(bSuccess, returnData, error)
             })

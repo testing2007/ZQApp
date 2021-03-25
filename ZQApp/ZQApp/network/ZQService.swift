@@ -11,12 +11,12 @@ import HandyJSON
 import Result
 import MBProgressHUD
 
-enum Service {
+enum ZQService {
     case index
     case search(courseTypes:String, keyword:String, page: Int, pageSize:Int)
 }
 
-extension Service : TargetType {
+extension ZQService : TargetType {
     var baseURL: URL { return URL(string: "https://app.boxuegu.com")! }
     var path: String {
         switch self {
@@ -83,7 +83,7 @@ let LoadingPlugin = NetworkActivityPlugin { (type, target) in
     }
 }
 
-let timeoutClosure = {(endpoint: Endpoint, closure: MoyaProvider<Service>.RequestResultClosure) -> Void in
+let timeoutClosure = {(endpoint: Endpoint, closure: MoyaProvider<ZQService>.RequestResultClosure) -> Void in
     
     if var urlRequest = try? endpoint.urlRequest() {
         urlRequest.timeoutInterval = 20
@@ -93,8 +93,8 @@ let timeoutClosure = {(endpoint: Endpoint, closure: MoyaProvider<Service>.Reques
     }
 }
 
-let ApiProvider = MoyaProvider<Service>(requestClosure: timeoutClosure)
-let ApiLoadingProvider = MoyaProvider<Service>(requestClosure: timeoutClosure, plugins: [LoadingPlugin])
+let ApiProvider = MoyaProvider<ZQService>(requestClosure: timeoutClosure)
+let ApiLoadingProvider = MoyaProvider<ZQService>(requestClosure: timeoutClosure, plugins: [LoadingPlugin])
 
 extension Response {
     func mapModel<T: HandyJSON>(_ type: T.Type) throws -> T {

@@ -15,14 +15,14 @@ enum CourseType:Int {
     case free
 }
 
-class IndexViewModel : LoadableObject {
+class IndexViewModel : ZQLoadableObject {
     var indexData : [IndexModel]? = nil
     var lives: [CourseItemModel]? //直播课
     var recommends : [CourseItemModel]? //推荐课程
     var primaries: [CourseItemModel]? //优质好课
     var frees:[CourseItemModel]? //免费好客
     
-    @Published private(set) var state = LoadingState<[IndexModel]?>.idle
+    @Published private(set) var state = ZQLoadingState<[IndexModel]?>.idle
     
     func load() {
         state = .loading

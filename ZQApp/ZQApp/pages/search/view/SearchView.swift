@@ -54,7 +54,7 @@ struct SearchView: View {
     @ObservedObject var searchVM : SearchViewModel = SearchViewModel()
     
     var body: some View {
-        AsyncContentView(source:searchVM) { data in
+        ZQAsyncContentView(source:searchVM) { data in
             SearchContentView(vm: searchVM)
         }
     }

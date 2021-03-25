@@ -36,7 +36,7 @@ struct IndexView: View {
     @ObservedObject var indexVM : IndexViewModel = IndexViewModel()
     
     var body: some View {
-        AsyncContentView(source:indexVM,
+        ZQAsyncContentView(source:indexVM,
                          loadingView:Placeholder()) { data in
             IndexContentView(vm: indexVM)
         }
