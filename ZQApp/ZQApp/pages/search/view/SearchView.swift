@@ -15,7 +15,7 @@ struct SearchContentView : View {
         // To remove only extra separators below the list:
         UITableView.appearance().tableFooterView = UIView()
         UITableView.appearance().tableHeaderView = UIView()
-
+        
         // To remove all separators including the actual ones:
         UITableView.appearance().separatorStyle = .none
     }
@@ -24,27 +24,27 @@ struct SearchContentView : View {
         if items.count == 0 {
             return AnyView(EmptyView())
         }
-
+        
         return AnyView(
             ZQRefreshableScrollView(height: 80,
-                                   refreshing: self.$vm.refreshing,
-                                   loadover: self.$vm.loadover,
-                                   showBottomLoading:.constant(true),
-                                   noDataPrompt:"数据已加载完毕",
-                                   action: {
-                self.vm.refresh()
-            }, footerAction: {
-                self.vm.loadMore()
-            }, content: {
-                ForEach.init(items, id: \.self) { item in
-                                        Text("\(item.courseId ?? 0)")
-                                            .frame(height: 50)
-                                            .frame(maxWidth: .infinity)
-                                            .background(Color.init(white: 0.9).clipShape(RoundedRectangle(cornerRadius: 8))
-                                                            .shadow(radius: 4))
-                                            .padding(4)
-                                    }
-            })
+                                    refreshing: self.$vm.refreshing,
+                                    loadover: self.$vm.loadover,
+                                    showBottomLoading:.constant(true),
+                                    noDataPrompt:"数据已加载完毕",
+                                    action: {
+                                        self.vm.refresh()
+                                    }, footerAction: {
+                                        self.vm.loadMore()
+                                    }, content: {
+                                        ForEach.init(items, id: \.self) { item in
+                                            Text("\(item.courseId ?? 0)")
+                                                .frame(height: 50)
+                                                .frame(maxWidth: .infinity)
+                                                .background(Color.init(white: 0.9).clipShape(RoundedRectangle(cornerRadius: 8))
+                                                                .shadow(radius: 4))
+                                                .padding(4)
+                                        }
+                                    })
         )
     }
 }
@@ -75,49 +75,3 @@ struct SearchView_Previews: PreviewProvider {
         SearchView()
     }
 }
-
-
-//            addPullRefresh(refreshing: self.$vm.refreshing, loadover: self.$vm.loadover, headerAction: {
-//                self.vm.refresh()
-//            }, footerAction: {
-//                self.vm.loadMore()
-//            })
-            
-            
-            
-            
-//            ScrollView {
-//                LazyVStack {
-//                    ForEach.init(items, id: \.self) { item in
-////                        Text(item.courseName ?? "")
-//                        Text("\(item.courseId ?? 0)")
-//                            .frame(height: 50)
-//                            .frame(maxWidth: .infinity)
-//                            .background(Color.init(white: 0.9).clipShape(RoundedRectangle(cornerRadius: 8))
-//                                            .shadow(radius: 4))
-//                            .padding(4)
-//                    }
-//
-//                    if self.vm.canLoadMore {
-//                        Text("Loading ...")
-//                            .padding()
-//                            .onAppear {
-//                                debugPrint("onAppear")
-//                                self.vm.loadMore()
-//                            }
-//                    }
-//
-//                }
-//
-//            }
-            
-            
-//            List {
-//
-//                ForEach(items, id:\.self) { item in
-//                    Text(item.courseName ?? "")
-//                }
-//                Button(action: loadMore) {
-//                       Text("")
-//                }
-//            }

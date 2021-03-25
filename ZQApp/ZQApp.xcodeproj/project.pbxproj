@@ -251,7 +251,6 @@
 			isa = PBXGroup;
 			children = (
 				943EE01A26043823000BC1A7 /* search */,
-				944ED1B325F0AD79006FBA22 /* base */,
 				944ED1B225F0AD60006FBA22 /* index */,
 			);
 			path = pages;
@@ -310,6 +309,8 @@
 		944ED20625F1D85A006FBA22 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				94C959B1260C44800016AEB0 /* page */,
+				94C959352609BFCD0016AEB0 /* refresh */,
 				94C95947260B59E70016AEB0 /* let-sExtend */,
 				9437309C25F78752000A44EB /* ZQFont.swift */,
 				944ED20725F1D867006FBA22 /* TopVC.swift */,
@@ -328,7 +329,6 @@
 		947136F22609922A00A03713 /* test */ = {
 			isa = PBXGroup;
 			children = (
-				94C959352609BFCD0016AEB0 /* Refresh */,
 				947136EF26098B6300A03713 /* ZQProxySize.swift */,
 				9437306B25F76259000A44EB /* ZQTextFieldStyle.swift */,
 				947136F52609929700A03713 /* ZQPreferenceKey.swift */,
@@ -384,12 +384,12 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		94C959352609BFCD0016AEB0 /* Refresh */ = {
+		94C959352609BFCD0016AEB0 /* refresh */ = {
 			isa = PBXGroup;
 			children = (
 				94C95944260B3DF70016AEB0 /* ZQRefreshableScrollView.swift */,
 			);
-			path = Refresh;
+			path = refresh;
 			sourceTree = "<group>";
 		};
 		94C95947260B59E70016AEB0 /* let-sExtend */ = {
@@ -515,6 +515,14 @@
 				94C95976260B59E70016AEB0 /* Loader.swift */,
 			);
 			path = Loader;
+			sourceTree = "<group>";
+		};
+		94C959B1260C44800016AEB0 /* page */ = {
+			isa = PBXGroup;
+			children = (
+				944ED1B325F0AD79006FBA22 /* base */,
+			);
+			path = page;
 			sourceTree = "<group>";
 		};
 		E439EA195244FC134573FF41 /* Pods */ = {

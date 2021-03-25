@@ -257,7 +257,6 @@ struct ZQRefreshableScrollView<Content: View>: View {
         var body: some View {
             Group{
                 ZStack {
-                    // ActivityIndicator().opacity(showBottomLoading ? 1 : 0)
                     if showBottomLoading {
                         ActivityRep().opacity(loadover ? 0 : 1)
                         Text(noDataPrompt).opacity(loadover ? 1 : 0)
